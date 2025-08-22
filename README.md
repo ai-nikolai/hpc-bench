@@ -5,6 +5,17 @@ A small repo for various HPC tasks... Maybe one day this will turn into a proper
 
 ---
 
+## CAMD Cluster:
+1. Getting vllm image:
+```bash
+apptainer build ./apptainer_images/vllm-rocm.sif docker://rocm/vllm:latest
+```
+
+2. Running inference using vllm.
+```bash
+sbatch ml-loads/simple_inference_slurm.sh
+```
+
 ## FAQ - Some common issues:
 
 ### Configuring Proxy for Github
