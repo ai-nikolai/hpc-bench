@@ -13,7 +13,12 @@ apptainer build ./apptainer_images/vllm-rocm.sif docker://rocm/vllm:latest
 
 2. Running inference using vllm.
 ```bash
-sbatch ml-loads/simple_inference_slurm.sh
+sbatch ml_loads/slurm_vllm.sh
+```
+
+3. Running inference using sglang.
+```bash
+sbatch ml_loads/slurm_sglang.sh
 ```
 
 
@@ -21,7 +26,7 @@ sbatch ml-loads/simple_inference_slurm.sh
 
 1. Approach 1 apptainer is working if you specific the right `-x ` options (to not interfere with the other servers.)
 
-2. Approach 2, direct VLLM installation...
+2. Approach 2, direct VLLM installation... [official docs](https://docs.vllm.ai/en/v0.6.5/getting_started/amd-installation.html#build-from-source-rocm)
 
 ### Getting SGLang running:
 
