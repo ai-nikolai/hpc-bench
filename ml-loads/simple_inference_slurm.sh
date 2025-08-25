@@ -2,9 +2,10 @@
 #SBATCH -J vllm_experiment
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1 #2
-#SBATCH --gpus-per-node=8 #8
+#SBATCH --gpus-per-node=4 #8
 #SBATCH -t 01:00:00
 #SBATCH --mem=128G #128G is not working #requesting more than 128 leads to an error.
+#SBATCH -x auh7-1b-gpu-188,auh7-1b-gpu-185
 
 #SBATCH -p faculty
 #SBATCH --qos=gtqos    #the other option is stqos
@@ -31,4 +32,4 @@ NUM_GPUS=1
 
 srun --ntasks=1 --gpus=${NUM_GPUS} \
   apptainer exec --rocm ./apptainer_images/vllm-rocm.sif \
-  python ./ml-loads/simple_inference.py --num_gpus ${NUM_GPUS}
+  python ./ml-loads/simple_inference.py --num_gpus ${NUM_GPUS} --model_name "Qwen/Qwen3-Coder-30B-A3B-Instruct"

@@ -16,6 +16,14 @@ apptainer build ./apptainer_images/vllm-rocm.sif docker://rocm/vllm:latest
 sbatch ml-loads/simple_inference_slurm.sh
 ```
 
+### Getting vllm running.
+
+1. Approach 1 apptainer is working if you specific the right `-x ` options (to not interfere with the other servers.)
+
+2. Approach 2, direct VLLM installation...
+
+
+
 ## FAQ - Some common issues:
 
 ### Configuring Proxy for Github

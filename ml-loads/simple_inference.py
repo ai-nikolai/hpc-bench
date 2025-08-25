@@ -6,7 +6,7 @@ import pstats
 
 import argparse
 
-def run_inference(num_gpus=1):
+def run_inference(num_gpus=1, model_name="Qwen/Qwen2.5-7B-Instruct"):
     sampling_params = SamplingParams(
         temperature=0.7,
         max_tokens=512,
@@ -15,8 +15,9 @@ def run_inference(num_gpus=1):
     print("\n\n\n===============\nSetting up LLM Engine:\n\n\n")
 
     llm = LLM(
+        model=model_name,
         # model="Qwen/Qwen3-Coder-30B-A3B-Instruct",
-        model="Qwen/Qwen2.5-7B-Instruct",
+        # model="Qwen/Qwen2.5-7B-Instruct",
         tensor_parallel_size=num_gpus,
         trust_remote_code=True
     )
@@ -37,6 +38,7 @@ def run_inference(num_gpus=1):
 def build_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--num_gpus", type=int, default=1)
+    parser.add_argument("--model_name", type=str, default="Qwen/Qwen2.5-7B-Instruct")
     args = parser.parse_args()
     return args
 
@@ -48,7 +50,7 @@ if __name__ == "__main__":
     # profiler = cProfile.Profile()
     # profiler.enable()
     print("--")
-    run_inference(num_gpus=args.num_gpus)
+    run_inference(num_gpus=args.num_gpus, model_name=args.model_name)
     
     # profiler.disable()
     # stats = pstats.Stats(profiler).sort_stats('cumulative')
