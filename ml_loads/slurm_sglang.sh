@@ -10,11 +10,14 @@
 #SBATCH -p faculty
 #SBATCH --qos=gtqos    #the other option is stqos
 
-#SBATCH -o ./logs/vllm_experiment/run_%j_%N_%s_%t.log
-#SBATCH -e ./logs/vllm_experiment/run_%j_%N_%s_%t.log
+#SBATCH -o ./logs/sglang_experiment/run_%j_%N_%s_%t.log
+#SBATCH -e ./logs/sglang_experiment/run_%j_%N_%s_%t.log
 
 
 # TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S") # Format: YYYY-MM-DD_HH-MM-SS
+
+NUM_GPUS=4
+
 
 mkdir -p ./logs/vllm_experiment/
 
@@ -25,11 +28,7 @@ module load apptainer
 cd ~/z_code/hpc-bench/
 mkdir -p logs
 
-# srun --ntasks=2 --gpus=4 \
-#   apptainer exec --rocm rocm-dev-5.7.sif \
-#   python train_ddp.py --data /path/to/dataset/ --out /vast/run_ddp
-NUM_GPUS=4
+source env_vllm/bin/activate
 
-srun --ntasks=1 --gpus=${NUM_GPUS} \
-  apptainer exec --rocm ./apptainer_images/vllm-rocm.sif \
-  python ./ml-loads/simple_inference.py --num_gpus ${NUM_GPUS} --model_name "Qwen/Qwen3-Coder-30B-A3B-Instruct"
+
+python ./ml_loads/simple_inference_vllm.py --num_gpus ${NUM_GPUS} --model_name "Qwen/Qwen2.5-7B-Instruct"
