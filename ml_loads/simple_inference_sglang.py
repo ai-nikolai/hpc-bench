@@ -1,25 +1,38 @@
-import torch
-from vllm import LLM, SamplingParams
+# import torch
+import sglang as sgl
 import time
 import cProfile
 import pstats
 
 import argparse
 
-def run_inference(num_gpus=1, model_name="Qwen/Qwen2.5-7B-Instruct"):
-    sampling_params = SamplingParams(
-        temperature=0.7,
-        max_tokens=512,
-        stop=["</s>"]
-    )
-    print("\n\n\n===============\nSetting up LLM Engine:\n\n\n")
 
-    llm = LLM(
-        model=model_name,
-        # model="Qwen/Qwen3-Coder-30B-A3B-Instruct",
-        # model="Qwen/Qwen2.5-7B-Instruct",
-        tensor_parallel_size=num_gpus,
-        trust_remote_code=True
+
+def get_sampling_params(**kwargs): #replacement for VLLM's sampling params...
+    return kwargs
+
+def run_inference(num_gpus=1, model_name="Qwen/Qwen2.5-7B-Instruct"):
+    sampling_params = {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "repetition_penalty": 1.05,
+        "max_new_tokens": 512,
+    }
+    
+    print("\n\n\n===============\nSetting up LLM Engine:\n\n\n")
+    llm = sgl.Engine(
+        model_path=model_name,
+        # context_length=1048576,
+        # page_size=256,
+        # attention_backend="dual_chunk_flash_attn",
+        tp_size=num_gpus, #NUM OF GPUS is here...
+        # disable_radix_cache=True,
+        # enable_mixed_chunk=False,
+        # enable_torch_compile=False,
+        # chunked_prefill_size=131072,
+        mem_fraction_static=0.9,
+        # log_level="DEBUG"
     )
     print("\n\n\n----\nSetting up LLM FINISHED\n\n\n")
 

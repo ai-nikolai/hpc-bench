@@ -30,7 +30,7 @@ sbatch ml_loads/slurm_sglang.sh
 
 ### Getting SGLang running:
 
-#### Installation from scratch of SGLang (Tried: 25.08.2025)
+#### Installation from scratch of SGLang (Tried: 25.08.2025) -> Result: did not work, needs vllm installation... Will attempt vllm installation & then sglang.
 
 1. Create virtual env:
 ```bash
