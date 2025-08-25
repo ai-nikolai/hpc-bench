@@ -16,13 +16,40 @@ apptainer build ./apptainer_images/vllm-rocm.sif docker://rocm/vllm:latest
 sbatch ml-loads/simple_inference_slurm.sh
 ```
 
+
 ### Getting vllm running.
 
 1. Approach 1 apptainer is working if you specific the right `-x ` options (to not interfere with the other servers.)
 
 2. Approach 2, direct VLLM installation...
 
+### Getting SGLang running:
 
+#### Installation from scratch of SGLang (Tried: 25.08.2025)
+
+1. Create virtual env:
+```bash
+python3 -m virtualenv env_llm
+source env_llm/bin/activate #activates env.
+```
+2. Install pytorch:
+```bash
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.4
+```
+
+3. Install SGlang [official docs](https://docs.sglang.ai/platforms/amd_gpu.html)
+```bash
+# Use the last release branch
+git clone -b v0.5.1.post2 https://github.com/sgl-project/sglang.git
+
+# Compile sgl-kernel
+cd sglang/sgl-kernel
+python setup_rocm.py install
+
+# Install sglang python package
+cd ..
+pip install -e "python[all_hip]"
+```
 
 ## FAQ - Some common issues:
 
