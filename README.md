@@ -28,7 +28,7 @@ sbatch ml_loads/slurm_sglang.sh
 
 2. Approach 2, direct VLLM installation... [official docs](https://docs.vllm.ai/en/v0.6.5/getting_started/amd-installation.html#build-from-source-rocm)
 
-#### Installation guide from scratch of vllm (Tried: 26.08.2025) -> Result: Failed (see point 6...)
+#### Attempt 1: vllm. Installation guide from scratch of vllm (Tried: 26.08.2025) -> Result: Failed (see point 6...)
 1. Create virtual env:
 ```bash
 python3 -m virtualenv env_llm
@@ -81,7 +81,7 @@ AttributeError: /opt/rocm-6.3.3/lib/libamd_smi.so: undefined symbol: amdsmi_rese
 
 ### Getting SGLang running:
 
-#### Installation from scratch of SGLang (Tried: 25.08.2025) -> Result: did not work, needs vllm installation... Will attempt vllm installation & then sglang.
+#### Attempt 1: sglang. Installation from scratch of SGLang (Tried: 25.08.2025) -> Result: did not work, needs vllm installation... Will attempt vllm installation & then sglang.
 
 1. Create virtual env:
 ```bash
