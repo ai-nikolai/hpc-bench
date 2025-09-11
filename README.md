@@ -5,6 +5,30 @@ A small repo for various HPC tasks... Maybe one day this will turn into a proper
 
 ---
 
+## CSCC Cluster:
+Partition:
+- cscc-gpu-p
+
+QoS:
+- cscc-gpu-qos
+
+```bash
+#! /bin/bash
+#SBATCH --job-name=test_job # Job name
+#SBATCH --output=/home/username/output_.%A.txt 
+#SBATCH --nodes=1 
+#SBATCH --ntasks=1 
+#SBATCH --mem=40G 
+#SBATCH --cpus-per-task=64 
+#SBATCH --gres=gpu:1 
+#SBATCH -p cscc-gpu-p 
+#SBATCH --time=12:00:00 
+#SBATCH -q cscc-gpu-qos
+```
+
+
+
+
 ## CAMD Cluster:
 1. Getting vllm image:
 ```bash
