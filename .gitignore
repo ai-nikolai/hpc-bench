@@ -1,4 +1,4 @@
-env_/*
+env_*
 apptainer_images/*
 slurm*.out
 logs/*

@@ -1,0 +1,6 @@
+sglang[all]>=0.5.2
+sgl-kernel
+# pip install "sglang[all]>=0.5.2"
+# pip3 install sgl-kernel
+# apt update
+# apt install numactl #(This is for CudaNuma Library) # https://github.com/sgl-project/sglang/issues/7868

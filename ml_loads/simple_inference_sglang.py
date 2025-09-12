@@ -45,7 +45,9 @@ def run_inference(num_gpus=1, model_name="Qwen/Qwen2.5-7B-Instruct"):
     end_time = time.time()
     print("\n\n\n----\nGeneration finished.\n\n\n")
 
-    print(f"Generated text: {outputs[0].outputs[0].text}")
+    print(outputs)
+    print("---\n")
+    print(f"Generated text: {outputs[0]['text']}")
     print(f"Time taken: {end_time - start_time:.2f} seconds")
 
 def build_args():

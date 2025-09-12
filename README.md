@@ -5,6 +5,15 @@ A small repo for various HPC tasks... Maybe one day this will turn into a proper
 
 ---
 
+## VM:
+
+### Some generally useful commands:
+```bash
+export HF_HOME="/workspace"
+# export PYPI_HOME=
+```
+
+---
 ## CSCC Cluster:
 Partition:
 - cscc-gpu-p
