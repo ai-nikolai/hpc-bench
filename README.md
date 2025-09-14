@@ -7,9 +7,11 @@ A small repo for various HPC tasks... Maybe one day this will turn into a proper
 
 ## VM:
 
-### Some generally useful commands:
+### Quick start
 ```bash
 export HF_HOME="/workspace"
+source env_ml/bin/activate
+./scripts/local_vllm.sh
 # export PYPI_HOME=
 ```
 
